@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1>Welcome, {{ current_user.username }}!</h1>
+  <a href="{{ url_for('post') }}">New Post</a>
+  {% for post in posts %}
+    <div>
+      <p>{{ post.author.username }} says: {{ post.body }}</p>
+      {% if post.image_url %}
+        <img src="{{ post.image_url }}" alt="Post image" style="max-width: 300px;">
+{% endif %}
+<p>Posted at {{ post.timestamp }}</p>
+</div>
+{% endfor %}
+{% endblock %}
